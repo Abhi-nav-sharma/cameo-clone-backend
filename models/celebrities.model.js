@@ -1,7 +1,7 @@
 const mongoose= require('mongoose')
 
 const reviewsSchema= new mongoose.Schema({
-    date:{type:date,default:Date.now},
+    date:{type:Date,default:Date.now},
     reviewer_name:{type:String},
     comments:{type:String},
     stars:{type:Number}
@@ -30,7 +30,7 @@ const celebritiesSchema= new mongoose.Schema({
     rating:{type:Number,default:null},
     reviews:[reviewsSchema],
     tags:{type:Array},
-    collection:{type:Array}
+    highlight:{type:Array}
 })
 
 const Celebrity= mongoose.model('celebrities',celebritiesSchema)

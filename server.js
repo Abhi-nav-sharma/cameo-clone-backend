@@ -9,8 +9,9 @@ app.use(cors())
 
 app.use(express.json())
 
-app.get('/',(req,res)=>{
-    const celebrities= Celebrity.find()
+app.get('/',async (req,res)=>{
+    const celebrities= await Celebrity.find()
+    console.log(celebrities)
     res.status(200).json(celebrities)
 })
 
