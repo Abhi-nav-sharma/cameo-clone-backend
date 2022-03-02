@@ -3,13 +3,15 @@ const app= express()
 const cors= require('cors')
 const PORT= process.env.PORT || 5000
 const connect= require('./config/db')
+const Celebrity = require('./models/celebrities.model')
 
 app.use(cors())
 
 app.use(express.json())
 
 app.get('/',(req,res)=>{
-    res.send('Hello world 2')
+    const celebrities= Celebrity.find()
+    res.status(200).json(celebrities)
 })
 
 const start= async ()=>{
