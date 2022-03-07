@@ -30,7 +30,8 @@ const celebritiesSchema= new mongoose.Schema({
     rating:{type:Number,default:null},
     reviews:[reviewsSchema],
     tags:{type:Array},
-    highlight:{type:Array}
+    highlight:{type:Array},
+    celeb_id:{type:String,required:true,unique:true}
 })
 
 const Celebrity= mongoose.model('celebrities',celebritiesSchema)

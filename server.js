@@ -4,16 +4,12 @@ const cors= require('cors')
 const PORT= process.env.PORT || 5000
 const connect= require('./config/db')
 const Celebrity = require('./models/celebrities.model')
-
+const celebRouter= require('./routes/celebrities.routes')
 app.use(cors())
 
 app.use(express.json())
 
-app.get('/',async (req,res)=>{
-    const celebrities= await Celebrity.find()
-    console.log(celebrities)
-    res.status(200).json(celebrities)
-})
+app.use('/celebs',celebRouter)
 
 const start= async ()=>{
     await connect()
