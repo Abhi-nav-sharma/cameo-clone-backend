@@ -15,7 +15,7 @@ const getAllCelebrities=async (req,res)=>{
 
 const getCelebritiesByID= async(req,res)=>{
     try{
-        const celebrity= await Celebrity.find({celeb_id:req.params.celeb_id})
+        const [celebrity]= await Celebrity.find({celeb_id:req.params.celeb_id})
         if(!celebrity){
             return res.status(400).send('No record found')
         }
