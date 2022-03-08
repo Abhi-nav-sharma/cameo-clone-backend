@@ -18,9 +18,7 @@ const UserSchema = new mongoose.Schema({
  })
 
 UserSchema.methods.checkPassword= function(password){
-    console.log(password)
     const hashedPassword= this.password
-    console.log(hashedPassword)
     return new Promise((resolve,reject)=>{
         bcrypt.compare(password,hashedPassword,(err,same)=>{
             if(err){
