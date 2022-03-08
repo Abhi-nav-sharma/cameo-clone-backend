@@ -6,8 +6,15 @@ const url = require('url');
 const validateSignin = require('../utils/validateSignin');
 const validateSignup = require('../utils/validateSignup');
 
-router.post('/signin',...validateSignin(),signin)
-router.post("/signup",...validateSignup(),signup)
+router.get('/auth/logout',(req,res)=>{
+    req.logout()
+    res.redirect('http://localhost:3000/')
+})
+
+router.post('/auth/signin',...validateSignin(),signin)
+
+router.post("/auth/signup",...validateSignup(),signup)
+
 router.get('/auth/facebook',
   passport.authenticate('facebook',{ scope : ['email'] }));
 
