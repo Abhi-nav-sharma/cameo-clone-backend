@@ -33,7 +33,8 @@ passport.use(
                         orders:{
                             purchased:[],
                             received:[]
-                        }
+                        },
+                        role:'user'
                     })
                     cb(null,user)
                 }

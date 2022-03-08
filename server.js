@@ -6,6 +6,7 @@ const connect= require('./config/db')
 const celebRouter= require('./routes/celebrities.routes')
 const authRouter= require('./routes/auth.routes')
 const passport= require('./config/passport')
+const userRouter= require('./routes/user.route')
 app.use(
     cors({
       origin: "http://localhost:3000", 
@@ -20,7 +21,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/',authRouter)
-app.use('/celebs',celebRouter)
+app.use('/',celebRouter)
+app.use('/',userRouter)
 
 const start= async ()=>{
     await connect()
