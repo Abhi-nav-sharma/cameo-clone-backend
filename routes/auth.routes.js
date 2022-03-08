@@ -1,12 +1,13 @@
 const express= require('express')
 const router= express.Router()
 const passport= require('../config/passport');
-const { generateToken, signin } = require('../controllers/auth.controlller');
+const { generateToken, signin, signup } = require('../controllers/auth.controlller');
 const url = require('url');
 const validateSignin = require('../utils/validateSignin');
+const validateSignup = require('../utils/validateSignup');
 
 router.post('/signin',...validateSignin(),signin)
-
+router.post("/signup",...validateSignup(),signup)
 router.get('/auth/facebook',
   passport.authenticate('facebook',{ scope : ['email'] }));
 

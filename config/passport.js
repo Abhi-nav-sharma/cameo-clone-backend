@@ -34,7 +34,8 @@ passport.use(
                             purchased:[],
                             received:[]
                         },
-                        role:'user'
+                        role:'user',
+                        bio:''
                     })
                     cb(null,user)
                 }
