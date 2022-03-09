@@ -38,7 +38,6 @@ UserSchema.pre('save',function(next){
         if(err){
             return next(err)
         }
-        console.log(hash)
         this.password=hash
         next()
     })

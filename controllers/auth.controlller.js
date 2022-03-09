@@ -34,7 +34,10 @@ const signup = async (req,res)=>{
             bio:''
         })
         const token =generateToken(user)
-        res.status(201).json({status:'success',data:user,token})
+        res.status(201).json({status:'success',data:{
+            email:user.email,
+            token
+        }})
     }
     catch(err){
         res.status(400).json({status:'failure',msg:err.toString()})
