@@ -1,8 +1,10 @@
 const express= require('express')
-const { getAllCelebrities, getCelebritiesByID } = require('../controllers/celebrities.controller')
+const { getAllCelebrities, getCelebritiesByID, getCelebritiesByHighlight, getCelebritiesBySubCategory } = require('../controllers/celebrities.controller')
 const router= express.Router()
 
 router.get('/celebs',getAllCelebrities)
-router.get('/celebs/:celeb_id',getCelebritiesByID)
+router.get('/celebs/celeb/:celeb_id',getCelebritiesByID)
+router.get('/celebs/highlight',getCelebritiesByHighlight)
+router.get('/celebs/sub_category',getCelebritiesBySubCategory)
 
 module.exports=router

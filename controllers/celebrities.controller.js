@@ -1,3 +1,4 @@
+const req = require("express/lib/request")
 const Celebrity = require("../models/celebrities.model")
 
 const getAllCelebrities=async (req,res)=>{
@@ -26,6 +27,33 @@ const getCelebritiesByID= async(req,res)=>{
     }
 }
 
+const getCelebritiesByHighlight= async(req,res)=>{
+    try{
+        const celebrity= await Celebrity.find({highlight:req.query.highlight})
+        if(!celebrity){
+            return res.status(400).send('No record found')
+        }
+        res.status(200).json(celebrity)
+    }
+    catch(err){
+        return res.status(500).send(err.toString())
+    }
+}
+
+const getCelebritiesBySubCategory= async(req,res)=>{
+    console.log(req.query)
+    try{
+        const celebrity= await Celebrity.find({sub_category1:req.query.sub_category})
+        if(!celebrity){
+            return res.status(400).send('No record found')
+        }
+        res.status(200).json(celebrity)
+    }
+    catch(err){
+        return res.status(500).send(err.toString())
+    }
+}
+
 module.exports={
-    getAllCelebrities,getCelebritiesByID
+    getAllCelebrities,getCelebritiesByID,getCelebritiesByHighlight,getCelebritiesBySubCategory
 }
