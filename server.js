@@ -9,21 +9,18 @@ const passport= require('./config/passport')
 const userRouter= require('./routes/user.route')
 app.use(
     cors({
-      origin: "http://localhost:3000", 
+      origin: "http://localhost:3000",
       methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
       credentials: true
     })
   )
-
 app.use(express.json())
 app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
-
 app.use('/',authRouter)
 app.use('/',celebRouter)
 app.use('/',userRouter)
-
 const start= async ()=>{
     await connect()
     console.log('connected to mongo')
@@ -31,5 +28,4 @@ const start= async ()=>{
         console.log('listening on port',PORT)
     })
 }
-
 module.exports= start
