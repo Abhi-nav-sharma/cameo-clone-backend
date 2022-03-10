@@ -41,7 +41,6 @@ const getCelebritiesByHighlight= async(req,res)=>{
 }
 
 const getCelebritiesBySubCategory= async(req,res)=>{
-    console.log(req.query)
     try{
         const celebrity= await Celebrity.find({sub_category1:req.query.sub_category})
         if(!celebrity){

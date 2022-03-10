@@ -1,8 +1,8 @@
 const User = require("../models/users.model")
 
-const getUserByEmail = async (req,res)=>{
+const getUser = async (req,res)=>{
     try{
-        const [user]= await User.find({email:req.params.email})
+        const [user]= await User.find({email:req.user.email})
         if(!user){
             return res.status(400).send('No record found')
         }
@@ -68,4 +68,21 @@ const addFollowingInUser= async(req,res)=>{
     }
 }
 
-module.exports={getUserByEmail,addFollowingInUser,getFollowing,removeFollowingInUser}
+const updateUser= async(req,res)=>{
+    try{
+        const user= await User.findOneAndUpdate({
+            email:req.user.email
+        },{$set:{name:req.body.name,twitter_handle:req.body.twitter,bio:req.body.bio}},{
+            returnOriginal:false
+        })
+        if(!user){
+            return res.status(400).json({msg:'User not found'})
+        }
+        return res.status(200).send('Updated user')
+    }
+    catch(err){
+        return res.status(500).send(err.toString())
+    }
+}
+
+module.exports={getUser,addFollowingInUser,getFollowing,removeFollowingInUser,updateUser}
