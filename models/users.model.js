@@ -11,10 +11,7 @@ const UserSchema = new mongoose.Schema({
     twitter_handle:{type:String},
     profile_picture:{type:String},
     following:{type:Array},
-    orders:{
-        purchased:{type:Array},
-        received:{type:Array}
-    },
+    orders:{type:Array},
     role:{type:String}
  })
 
