@@ -8,7 +8,7 @@ const orderSchema = new mangoose.Schema({
     optional:{type:String,required:false},
     price:{type:Number,required:true},
     celeb_id:{type:String,required:true},
-    user_id:{type:String,required:true},
+    username:{type:String,required:true},
 })
 
 const Orders = mongoose.model('orders',orderSchema)
