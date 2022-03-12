@@ -85,4 +85,25 @@ const updateUser= async(req,res)=>{
     }
 }
 
-module.exports={getUser,addFollowingInUser,getFollowing,removeFollowingInUser,updateUser}
+const addOrderInUser= async(req,res)=>{
+    try{
+        const user= await User.findOneAndUpdate({
+            email:req.user.email
+        },{
+            $addToSet:{
+                orders:req.order._id
+            }
+        },{
+            returnOriginal:false
+        })
+        if(!user){
+            return res.status(400).json({msg:'User not found'})
+        }
+        return res.status(200).send('Added Order to user')
+    }
+    catch(err){
+        return res.status(500).send(err.toString())
+    }
+}
+
+module.exports={getUser,addFollowingInUser,getFollowing,removeFollowingInUser,updateUser,addOrderInUser}

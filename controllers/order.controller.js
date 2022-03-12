@@ -1,25 +1,38 @@
 const Orders = require("../models/order.model")
 
-const placeOrderOfUser = async (req,res) => {
+const placeOrderOfUser = async (req,res,next) => {
     try{
-        const detailsOfOrder = await Orders.updateOne({username:req.params.username},{})
-        if(!detailsOfOrder){
-            return res.status(400).send('No record found')
+        const order= await Orders.create({
+            fore:req.body.fore,
+            from:req.body.from,
+            occassion:req.body.occassion,
+            instructions:req.body.instructions,
+            optional:req.body.optional,
+            price:req.body.price,
+            celeb_id:req.body.celeb_id,
+            user_id:req.user.email,
+            recieved:req.body.recieved,
+            celeb_name:req.body.celeb_name,
+            celeb_img:req.body.celeb_img
+        })
+        if(!order){
+            return res.status(401).json({status:'failure', message:'Order not created'})
         }
-        res.status(200).json(detailsOfOrder)
-    }   
-    catch{
-        return res.status(500).send(err.toString())
+        req.order= order
+        next()
+    }
+    catch(err){
+        res.status(500).json({status:'failure',msg:err.toString()})
     }
 }
 
 const getOrdersOfUser = async (req,res)=>{
     try{
-        const allOrdersOfUser = await Orders.find({username:req.params.username})
-        if(!allOrdersOfUser){
-            return res.status(400).send('No record found')
+        const orders = await Orders.find({user_id:req.user.email})
+        if(!orders){
+            return res.status(400).send('No orders found')
         }
-        res.status(200).json(allOrdersOfUser)
+        res.status(200).json(orders)
     }
     catch(err){
         return res.status(500).send(err.toString())
@@ -28,6 +41,6 @@ const getOrdersOfUser = async (req,res)=>{
 
 
 module.exports={
-    getOrdersOfUser,
-    placeOrderOfUser
+    placeOrderOfUser,
+    getOrdersOfUser
 }
