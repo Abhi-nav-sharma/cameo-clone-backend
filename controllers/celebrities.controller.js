@@ -42,7 +42,7 @@ const getCelebritiesByHighlight= async(req,res)=>{
 
 const getCelebritiesBySubCategory= async(req,res)=>{
     try{
-        const celebrity= await Celebrity.find({sub_category1:req.query.sub_category})
+        const celebrity= await Celebrity.find({category:req.query.sub_category})
         if(!celebrity){
             return res.status(400).send('No record found')
         }
