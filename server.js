@@ -8,6 +8,8 @@ const authRouter= require('./routes/auth.routes')
 const passport= require('./config/passport')
 const userRouter= require('./routes/user.route')
 const orderRouter = require('./routes/order.routes')
+const adminRouter = require('./routes/admin.routes')
+
 app.use(
     cors({
       origin: "http://localhost:3000",
@@ -23,6 +25,7 @@ app.use('/',authRouter)
 app.use('/',celebRouter)
 app.use('/',userRouter)
 app.use('/',orderRouter)
+app.use('/',adminRouter);
 const start= async ()=>{
     await connect()
     console.log('connected to mongo')
