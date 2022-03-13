@@ -19,7 +19,7 @@ const adminGetCelebById = async (req,res) => {
         if(!celeb){
             return res.status(400).send('Celebrity Does Not Exists')
         }
-        res.status(200).json(celeb)
+        return res.status(200).json(celeb)
     }
     catch(err){
         return res.status(500).send(err.toString())
@@ -30,7 +30,7 @@ const admindeleteCelebrity = async (req,res) => {
     try{
         const celeb = await Celebrity.findOneAndDelete({celeb_id:req.params.celeb_id},{returnOriginal:true});
         if(!celeb){
-            return res.status(404).send("Celebrity does not exist")
+            return res.status(200).send("Celebrity does not exist")
         }
         return res.status(200).json(celeb)
     }
