@@ -1,5 +1,6 @@
 const express= require('express')
-const { addFollowingInUser, getFollowing, removeFollowingInUser, getUser, updateUser } = require('../controllers/user.controller')
+const { getCelebritiesByID } = require('../controllers/celebrities.controller')
+const { addFollowingInUser, getFollowing, removeFollowingInUser, getUser, updateUser, getCelebBySearch } = require('../controllers/user.controller')
 const authenticated = require('../middleware/authenticated')
 const router= express.Router()
 
@@ -14,5 +15,6 @@ router.patch('/user/detail',authenticated,updateUser)
 router.get('/user/following',authenticated,getFollowing)
 
 router.patch('/user/following/remove',authenticated,removeFollowingInUser)
+
 
 module.exports=router

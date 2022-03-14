@@ -53,6 +53,15 @@ const getCelebritiesBySubCategory= async(req,res)=>{
     }
 }
 
+
+const getCelebBySearch = async (req,res) => {
+    const celeb = await Celebrity.find({$text:{$search: req.params.text}});
+    if(!celeb){
+        res.status(404).json("No celeb found")
+    }
+    res.status(200).json(celeb)
+}
+
 module.exports={
-    getAllCelebrities,getCelebritiesByID,getCelebritiesByHighlight,getCelebritiesBySubCategory
+    getAllCelebrities,getCelebritiesByID,getCelebritiesByHighlight,getCelebritiesBySubCategory,getCelebBySearch
 }

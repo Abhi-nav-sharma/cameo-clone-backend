@@ -1,3 +1,4 @@
+
 const User = require("../models/users.model")
 
 const getUser = async (req,res)=>{
@@ -105,5 +106,6 @@ const addOrderInUser= async(req,res)=>{
         return res.status(500).send(err.toString())
     }
 }
+
 
 module.exports={getUser,addFollowingInUser,getFollowing,removeFollowingInUser,updateUser,addOrderInUser}

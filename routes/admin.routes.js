@@ -1,5 +1,5 @@
 const express = require('express');
-const { adminGetAllCelebs,admindeleteCelebrity,adminGetCelebById, adminUpdateCelebrity } = require('../models/admin.controller');
+const { adminGetAllCelebs,admindeleteCelebrity,adminGetCelebById, adminUpdateCelebrity } = require('../controllers/admin.controller');
 
 
 const router = express.Router();
