@@ -13,7 +13,8 @@ const placeOrderOfUser = async (req,res,next) => {
             user_id:req.user.email,
             recieved:req.body.recieved,
             celeb_name:req.body.celeb_name,
-            celeb_img:req.body.celeb_img
+            celeb_img:req.body.celeb_img,
+            video_url:''
         })
         if(!order){
             return res.status(401).json({status:'failure', message:'Order not created'})
@@ -52,7 +53,24 @@ const getOrdersofCelebrity= async(req,res)=>{
     }
 }
 
+const updateOrder= async(req,res)=>{
+    try{
+        const order= await Orders.findOneAndUpdate({
+            _id:req.body.id
+        },{$set:{video_url:req.body.video,recieved:true}},{
+            returnOriginal:false
+        })
+        if(!order){
+            return res.status(400).json({msg:'User not found'})
+        }
+        return res.status(200).send(order)
+    }
+    catch(err){
+        return res.status(500).send(err.toString())
+    }
+}
+
 module.exports={
     placeOrderOfUser,
-    getOrdersOfUser,getOrdersofCelebrity
+    getOrdersOfUser,getOrdersofCelebrity,updateOrder
 }
