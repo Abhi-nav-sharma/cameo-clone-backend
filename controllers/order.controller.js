@@ -39,8 +39,20 @@ const getOrdersOfUser = async (req,res)=>{
     }
 }
 
+const getOrdersofCelebrity= async(req,res)=>{
+    try{
+        const orders = await Orders.find({celeb_id:req.params.celeb_id})
+        if(!orders){
+            return res.status(400).send('No orders found')
+        }
+        res.status(200).json(orders)
+    }
+    catch(err){
+        return res.status(500).send(err.toString())
+    }
+}
 
 module.exports={
     placeOrderOfUser,
-    getOrdersOfUser
+    getOrdersOfUser,getOrdersofCelebrity
 }
