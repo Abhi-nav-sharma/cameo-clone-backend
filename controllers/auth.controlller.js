@@ -25,10 +25,7 @@ const signup = async (req,res)=>{
             twitter_handle:'',
             profile_picture:'https://t4.ftcdn.net/jpg/02/23/50/73/360_F_223507349_F5RFU3kL6eMt5LijOaMbWLeHUTv165CB.jpg',
             following:[],
-            orders:{
-                purchased:[],
-                received:[]
-            },
+            orders:[],
             password:req.body.password,
             role:'user',
             bio:''
