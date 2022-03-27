@@ -26,6 +26,9 @@ app.use('/',celebRouter)
 app.use('/',userRouter)
 app.use('/',orderRouter)
 app.use('/',adminRouter);
+app.get('/',(req,res)=>{
+  res.status(200).send('Hello')
+})
 const start= async ()=>{
     await connect()
     console.log('connected to mongo')
