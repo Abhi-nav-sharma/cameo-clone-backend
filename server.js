@@ -1,7 +1,7 @@
 const express= require('express')
 const app= express()
 const cors= require('cors')
-const PORT= 5000  //process.env.PORT || 
+const PORT= 5000  //process.env.PORT || 5000
 const connect= require('./config/db')
 const celebRouter= require('./routes/celebrities.routes')
 const authRouter= require('./routes/auth.routes')
