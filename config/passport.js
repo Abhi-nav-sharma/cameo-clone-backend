@@ -17,7 +17,7 @@ passport.use(
         {
             clientID: process.env.FACEBOOK_CLIENT_ID,
             clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-            callbackURL: 'http://localhost:5000/auth/facebook/callback',
+            callbackURL: 'https://cameo-backend.herokuapp.com/auth/facebook/callback',
             profileFields: ['id', 'displayName', 'email', 'name','picture.type(large)']
         }, async function(accessToken,refreshToken,profile,cb){
             try{

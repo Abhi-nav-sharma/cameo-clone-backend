@@ -18,9 +18,9 @@ app.use(
     })
   )
 app.use(express.json())
-// app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use('/',authRouter)
 app.use('/',celebRouter)
 app.use('/',userRouter)

@@ -8,7 +8,7 @@ const validateSignup = require('../utils/validateSignup');
 
 router.get('/auth/logout',(req,res)=>{
     req.logout()
-    res.redirect('http://localhost:3000/')
+    res.redirect('https://cameo-celebrity.netlify.app')
 })
 
 router.post('/auth/signin',...validateSignin(),signin)
@@ -24,7 +24,7 @@ router.get('/auth/facebook/callback',
     const token= generateToken(req.user)
     // res.cookie('token',token)
     res.redirect(url.format({
-        pathname:'https://cameo-frontend.vercel.app/',
+        pathname:'https://cameo-celebrity.netlify.app/',
         query:{
             "token":token,
             "user":req.user.email
