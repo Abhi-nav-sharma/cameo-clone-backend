@@ -24,7 +24,7 @@ router.get('/auth/facebook/callback',
     const token= generateToken(req.user)
     // res.cookie('token',token)
     res.redirect(url.format({
-        pathname:'http://localhost:3000/',
+        pathname:'https://cameo-frontend.vercel.app/',
         query:{
             "token":token,
             "user":req.user.email
